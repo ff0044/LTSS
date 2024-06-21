@@ -2,6 +2,7 @@
 
 # The script was initially designed to work on Fedora, and was forked + tweaked to run on Debian / Ubuntu
 # This was made for the Surface Pro 7+, though running the script might also work on your computer. 
+# In essence, all it does is automate the instructions from https://github.com/linux-surface/linux-surface/wiki/Installation-and-Setup#Debian--Ubuntu
 # Good luck, and enjoy
 
 if [ "$UID" -ne 0 ]; then
