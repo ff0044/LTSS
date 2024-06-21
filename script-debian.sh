@@ -9,10 +9,12 @@ if [ "$UID" -ne 0 ]; then
     exit 1
 else
     # clone the repositories
+    git clone https://github.com/quo/ithc-linux ~/ithc-linux
+    git clone https://github.com/linux-surface/iptsd ~/iptsd
 
     # add the Linux Surface signing keys
     wget -qO - https://raw.githubusercontent.com/linux-surface/linux-surface/master/pkg/keys/surface.asc | gpg --dearmor | sudo dd of=/etc/apt/trusted.gpg.d/linux-surface.gpg
-
+    
     # add the Linux Surface repository
     echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" | sudo tee /etc/apt/sources.list.d/linux-surface.list
     sudo apt update
@@ -21,7 +23,7 @@ else
     sudo apt install dkms meson build-essential -y
 
     # cd into ithc-linux and run make dkms-install
-    cd ~/ithc/ithc-linux
+    cd ~/ithc-linux
     sudo make dkms-install
 
     # add ithc to modprobe
