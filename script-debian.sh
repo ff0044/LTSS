@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# The script works only on Fedora and can be forked for it to run on other distros. 
-# This is also made for the Surface Pro 7+, though running the script might also
-# work on your computer. Good luck, and enjoy
+# The script was initially designed to work on Fedora, and was forked + tweaked to run on Debian / Ubuntu
+# This was made for the Surface Pro 7+, though running the script might also work on your computer. 
+# Good luck, and enjoy
 
 if [ "$UID" -ne 0 ]; then
     echo "This script must be run as root"
@@ -50,4 +50,8 @@ else
     # edit grub config
     sudo sed -i "s/GRUB_CMDLINE_LINUX=.*/GRUB_CMDLINE_LINUX=\\\"rhgb intremap=nosid '~\/.daemonscript\/iptsdscript.sh' quiet\\\"/g" /etc/default/grub
     sudo update-grub
+
+    # explictly warn about secureboot password
+    echo "Please remember the password you set for secure boot. It should be 'surface', but scrool up and check."
+    echo "You will need it to enroll the MOK key, which will be required as soon as you reboot!"
 fi
