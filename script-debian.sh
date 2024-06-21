@@ -13,10 +13,11 @@ else
     git clone https://github.com/linux-surface/iptsd
 
     # add the Linux Surface repository
-    sudo dnf config-manager --add-repo=https://pkg.surfacelinux.com/fedora/linux-surface.repo
+    echo "deb [arch=amd64] https://pkg.surfacelinux.com/debian release main" | sudo tee /etc/apt/sources.list.d/linux-surface.list
+    sudo apt update
 
     # install dkms and meson
-    sudo dnf install dkms meson build -y
+    sudo apt install dkms meson build-essential -y
 
     # cd into ithc-linux and run make dkms-install
     cd ~/ithc/ithc-linux
@@ -26,10 +27,10 @@ else
     echo "ithc" | sudo tee -a /etc/modules-load.d/ithc.conf
 
     # install kernel needed
-    sudo dnf install --allowerasing kernel-surface iptsd libwacom-surface
+    sudo apt install linux-image-surface linux-headers-surface libwacom-surface -y
 
     # adding secure boot
-    sudo dnf install surface-secureboot
+    sudo apt install linux-surface-secureboot-mok
 
     # cd into iptsd and run meson build, then ninja -C build
     cd ~/iptsd
