@@ -9,7 +9,7 @@ if [ "$UID" -ne 0 ]; then
     exit 1
 else
     # clone the repositories
-    git clone https://github.com/quo/ithc
+    git clone https://github.com/quo/ithc-linux
     git clone https://github.com/linux-surface/iptsd
 
     # add the Linux Surface repository
